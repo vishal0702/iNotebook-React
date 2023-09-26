@@ -2,22 +2,84 @@ import NoteContext from "./NoteContext";
 import { useState } from "react";
 
 const NoteState = (props) => {
-  const s1 = {
-    name: "Vishal",
-    class: "11A",
-  };
+  const notesInitial = [
+    {
+      _id: "650ae5323e6359ae82aa00b3",
+      user: "6502f931b654a02ad8afd7a3",
+      title: "My Title 2",
+      description: "Complete all tasks!",
+      tag: "personal",
+      date: "2023-09-20T12:27:30.472Z",
+      __v: 0,
+    },
+    {
+      _id: "650ae56b3e6359ae82aa00b8",
+      user: "6502f931b654a02ad8afd7a3",
+      title: "My Title 1",
+      description: "Please Wake up early!",
+      tag: "personal",
+      date: "2023-09-20T12:28:27.246Z",
+      __v: 0,
+    },
+    {
+      _id: "650ae5323e6359ae82aa00b3",
+      user: "6502f931b654a02ad8afd7a3",
+      title: "My Title 2",
+      description: "Complete all tasks!",
+      tag: "personal",
+      date: "2023-09-20T12:27:30.472Z",
+      __v: 0,
+    },
+    {
+      _id: "650ae56b3e6359ae82aa00b8",
+      user: "6502f931b654a02ad8afd7a3",
+      title: "My Title 1",
+      description: "Please Wake up early!",
+      tag: "personal",
+      date: "2023-09-20T12:28:27.246Z",
+      __v: 0,
+    },
+    {
+      _id: "650ae5323e6359ae82aa00b3",
+      user: "6502f931b654a02ad8afd7a3",
+      title: "My Title 2",
+      description: "Complete all tasks!",
+      tag: "personal",
+      date: "2023-09-20T12:27:30.472Z",
+      __v: 0,
+    },
+    {
+      _id: "650ae56b3e6359ae82aa00b8",
+      user: "6502f931b654a02ad8afd7a3",
+      title: "My Title 1",
+      description: "Please Wake up early!",
+      tag: "personal",
+      date: "2023-09-20T12:28:27.246Z",
+      __v: 0,
+    },
+    {
+      _id: "650ae5323e6359ae82aa00b3",
+      user: "6502f931b654a02ad8afd7a3",
+      title: "My Title 2",
+      description: "Complete all tasks!",
+      tag: "personal",
+      date: "2023-09-20T12:27:30.472Z",
+      __v: 0,
+    },
+    {
+      _id: "650ae56b3e6359ae82aa00b8",
+      user: "6502f931b654a02ad8afd7a3",
+      title: "My Title 1",
+      description: "Please Wake up early!",
+      tag: "personal",
+      date: "2023-09-20T12:28:27.246Z",
+      __v: 0,
+    },
+  ];
 
-  const [state, setstate] = useState(s1);
-  const update = () => {
-    setTimeout(() => {
-      setstate({
-        name: "Anshu",
-        class: "7B",
-      });
-    }, 2000);
-  };
+  const [notes, setnotes] = useState(notesInitial);
   return (
-    <NoteContext.Provider value={{ state, update }}>
+    <NoteContext.Provider value={[notes, setnotes]}>
       {props.children}
     </NoteContext.Provider>
   );
