@@ -5,12 +5,18 @@ import AddNote from "./AddNote";
 
 const Notes = () => {
   const context = useContext(NoteContext);
-  const { notes, getNotes, addNote } = context;
+  const { notes, getNotes, editNote } = context;
 
-  const [note, setNote] = useState({ etitle: "", edescription: "", etag: "" });
+  const [note, setNote] = useState({
+    id: "",
+    etitle: "",
+    edescription: "",
+    etag: "",
+  });
 
   useEffect(() => {
     getNotes();
+    //eslint-disable-next-line
   }, []);
 
   const ref = useRef(null);
@@ -18,6 +24,7 @@ const Notes = () => {
   const updateNote = (currentNote) => {
     ref.current.click();
     setNote({
+      id: currentNote._id,
       etitle: currentNote.title,
       edescription: currentNote.description,
       etag: currentNote.tag,
@@ -30,7 +37,7 @@ const Notes = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log("updating note: ", note);
+    editNote(note.id, note.etitle, note.edescription, note.etag);
   };
 
   return (
@@ -122,6 +129,7 @@ const Notes = () => {
                 onClick={handleClick}
                 type="button"
                 className="btn btn-primary"
+                data-bs-dismiss="modal"
               >
                 Update Note
               </button>
