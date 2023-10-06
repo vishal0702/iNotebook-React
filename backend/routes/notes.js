@@ -106,7 +106,7 @@ router.delete("/deletenote/:id", fetchuser, async (req, res) => {
       return res.status(401).send("Unauthorised Error!");
     }
 
-    note = await Note.findOneAndDelete(req.params.id);
+    note = await Note.findByIdAndDelete(req.params.id);
     res.json({ Success: "Note is deleted", note: note });
   } catch (error) {
     console.error(error.message);
