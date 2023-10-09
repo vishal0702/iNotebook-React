@@ -19,7 +19,7 @@ const NoteState = (props) => {
       },
     });
     const json = await response.json();
-    console.log(json);
+    // console.log(json);
     setNotes(json);
   };
 
@@ -35,21 +35,21 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag }),
     });
-    const json =  response.json();
-    console.log(json);
+    const note = await response.json();
+    setNotes(notes.concat(note));
+    // console.log(json);
 
     //Logic to add note on client side
-    console.log("Adding a note");
-    const note = {
-      _id: "650ae56b3e6359ae82aa040bb8",
-      user: "6502f931b654a02ad8afd7a3",
-      title: title,
-      description: description,
-      tag: tag,
-      date: "2023-09-20T12:28:27.246Z",
-      __v: 0,
-    };
-    setNotes(notes.concat(note));
+    // console.log("Adding a note");
+    // const note = {
+    //   _id: "650ae56b3e6359ae82aa040bb8",
+    //   user: "6502f931b654a02ad8afd7a3",
+    //   title: title,
+    //   description: description,
+    //   tag: tag,
+    //   date: "2023-09-20T12:28:27.246Z",
+    //   __v: 0,
+    // };
   };
 
   //Delete a Note
@@ -63,11 +63,11 @@ const NoteState = (props) => {
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUwMmY5MzFiNjU0YTAyYWQ4YWZkN2EzIn0sImlhdCI6MTY5NDc4MDM4MX0.FAKvAosarlFu0fvJbTOgInrBfJqFfsuEZlyxocCSJ-E",
       },
     });
-    const json = response.json();
+    const json = await response.json();
     console.log(json);
 
     //Logic to delete note on client side
-    console.log("Deleting note with id: " + id);
+    // console.log("Deleting note with id: " + id);
     const newNotes = notes.filter((note) => {
       return note._id !== id;
     });
@@ -99,7 +99,6 @@ const NoteState = (props) => {
         newNote[index].tag = tag;
         break;
       }
-      
     }
     setNotes(newNote);
   };

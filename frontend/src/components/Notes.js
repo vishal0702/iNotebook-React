@@ -6,6 +6,7 @@ import AddNote from "./AddNote";
 const Notes = () => {
   const context = useContext(NoteContext);
   const { notes, getNotes, editNote } = context;
+  
 
   const [note, setNote] = useState({
     id: "",
@@ -60,7 +61,7 @@ const Notes = () => {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog">
+        <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
@@ -87,6 +88,8 @@ const Notes = () => {
                     name="etitle"
                     aria-describedby="emailHelp"
                     onChange={onChange}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -100,6 +103,8 @@ const Notes = () => {
                     id="edescription"
                     name="edescription"
                     onChange={onChange}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -113,6 +118,8 @@ const Notes = () => {
                     id="etag"
                     name="etag"
                     onChange={onChange}
+                    minLength={5}
+                    required
                   />
                 </div>
               </form>
@@ -126,6 +133,9 @@ const Notes = () => {
                 Close
               </button>
               <button
+                disabled={
+                  note.etitle < 5 || note.edescription < 5 || note.etag < 5
+                }
                 onClick={handleClick}
                 type="button"
                 className="btn btn-primary"
@@ -138,8 +148,11 @@ const Notes = () => {
         </div>
       </div>
 
-      <div className="row my-3">
+      <div className="row my-3 mx-1">
         <h2>Your Notes</h2>
+        <div className="container">
+          {notes.length === 0 && "No notes to display"}
+        </div>
         {notes.map((note) => {
           return (
             <NoteItem key={note._id} updateNote={updateNote} note={note} />
