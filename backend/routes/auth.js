@@ -20,9 +20,10 @@ router.post(
     }),
   ],
   async (req, res) => {
+    let success= false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({success, errors: errors.array() });
     }
 
     try {
@@ -30,6 +31,7 @@ router.post(
       let user = await User.findOne({ email: req.body.email });
       if (user) {
         return res.status(400).json({
+          success,
           errors: "Sorry! A user already exists with the same email.",
         });
       }
@@ -46,7 +48,8 @@ router.post(
         },
       };
       const authToken = jwt.sign(data, JWT_SECRET);
-      res.json({ authToken });
+      success=true;
+      res.json({success, authToken });
       // .then((user) => res.json(user)).catch(err => {console.log(err)
       // res.json({error : 'Duplicate email found! Please re-check.', message: err.message})})
       // res.json(user);
@@ -65,13 +68,14 @@ router.post(
     body("password", "Password should not blank! ").exists(),
   ],
   async (req, res) => {
+    let success = false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({success, errors: errors.array() });
     }
 
     const { email, password } = req.body;
-    let success = false;
+    
     try {
       let user = await User.findOne({ email });
       if (!user) {
