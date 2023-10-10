@@ -71,14 +71,15 @@ router.post(
     }
 
     const { email, password } = req.body;
+    let success = false;
     try {
       let user = await User.findOne({ email });
       if (!user) {
-        return res.status(400).json({ error: "Invalid Credentials!" });
+        return res.status(400).json({success, error: "Invalid Credentials!" });
       }
       const comparePassword = await bcrypt.compare(password, user.password);
       if (!comparePassword) {
-        return res.status(400).json({ error: "Invalid Credentials!" });
+        return res.status(400).json({success, error: "Invalid Credentials!" });
       }
       const data = {
         user: {
@@ -86,7 +87,8 @@ router.post(
         },
       };
       const authToken = jwt.sign(data, JWT_SECRET);
-      res.json({ authToken });
+      success= true;
+      res.json({ success, authToken });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Server Error");
