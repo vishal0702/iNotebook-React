@@ -34,20 +34,25 @@ const Login = (props) => {
 
     
   return (
-    <div>
-        <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-                <label htmlFor="email" className="form-label">Email address</label>
-                <input type="email" className="form-control" id="email" name='email' value={credentials.email} onChange={onChange} aria-describedby="emailHelp" />
-                <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-            </div>
-            <div className="mb-3">
-                <label htmlFor="password" className="form-label">Password</label>
-                <input type="password" className="form-control" id="password" name='password' value={credentials.password} onChange={onChange} />
-            </div>
-            
-            <button type="submit" className="btn btn-primary">LOG IN</button>
-        </form>
+    <div className='row justify-content-center align-items-center'>
+        <div className="col-md-6" style={{alignItems:"center", width:"500px", }}>
+          <h2 className='text-center mb-3' >iNotebook</h2>
+          <form onSubmit={handleSubmit}>
+              <div className="mb-2">
+                  <label htmlFor="email" className="form-label"><b>Email address</b></label>
+                  <input type="email"  className="form-control form-control-sm" id="email" name='email' value={credentials.email} onChange={onChange} aria-describedby="emailHelp" />
+                  <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+              </div>
+              <div className="mb-3">
+                  <label htmlFor="password" className="form-label"><b>Password</b></label>
+                  <input type="password"  className="form-control form-control-sm" id="password" name='password' value={credentials.password} onChange={onChange} />
+              </div>
+              
+              <div className='d-grid gap-2'>
+                <button type="submit" className="btn btn-primary btn-sm" style={{borderRadius:"8px"}}>LOG IN</button>
+              </div>
+          </form>
+        </div>
     </div>
   )
 }

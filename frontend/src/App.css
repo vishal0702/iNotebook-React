@@ -1,5 +1,14 @@
 .App {
   text-align: center;
+  
+}
+
+body{
+  background-image: url("https://img.freepik.com/free-vector/vibrant-fluid-gradient-background-with-curvy-shapes_1017-32108.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-color: #4cbd77; */
+  font-family: cursive;
 }
 
 .App-logo {
