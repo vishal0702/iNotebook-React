@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
 
@@ -36,21 +36,28 @@ const Login = (props) => {
   return (
     <div className='row justify-content-center align-items-center'>
         <div className="col-md-6" style={{alignItems:"center", width:"500px", }}>
-          <h2 className='text-center mb-3' >iNotebook</h2>
+          <h2 className='text-center mb-4' ><u>Login to iNotebook</u></h2>
           <form onSubmit={handleSubmit}>
               <div className="mb-2">
                   <label htmlFor="email" className="form-label"><b>Email address</b></label>
-                  <input type="email"  className="form-control form-control-sm" id="email" name='email' value={credentials.email} onChange={onChange} aria-describedby="emailHelp" />
+                  <input type="email" required className="form-control form-control-sm" id="email" name='email' value={credentials.email} onChange={onChange} aria-describedby="emailHelp" />
                   <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
               </div>
               <div className="mb-3">
                   <label htmlFor="password" className="form-label"><b>Password</b></label>
-                  <input type="password"  className="form-control form-control-sm" id="password" name='password' value={credentials.password} onChange={onChange} />
+                  <input type="password" required  className="form-control form-control-sm" id="password" name='password' value={credentials.password} onChange={onChange} />
               </div>
               
               <div className='d-grid gap-2'>
-                <button type="submit" className="btn btn-primary btn-sm" style={{borderRadius:"8px"}}>LOG IN</button>
+                <button type="submit" className="btn btn-primary btn-sm" style={{borderRadius:"8px"}}>Log In</button>
               </div>
+
+              <div className='mt-2' style={{textAlign:"end"}}>
+                <p>Don't have an account?&nbsp;
+                  <Link to="/signup"><span>Sign Up</span></Link>
+                </p>
+              </div>
+              
           </form>
         </div>
     </div>
